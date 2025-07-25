@@ -1,0 +1,30 @@
+# This is the configuration file for Ghostty.
+
+# Run `ghostty +show-config --default --docs` to view a list of all available config options and their default values.
+
+# Additionally, each config option is also explained in detail on Ghostty's website, at https://ghostty.org/docs/config.
+
+## Editor settings
+
+background-blur = true
+background-opacity = 0.9
+font-family = "Maple Mono NF"
+font-feature = calt
+font-feature = cv01
+font-size = 12
+font-thicken = true
+macos-titlebar-style = tabs
+quick-terminal-animation-duration = .25
+window-padding-x = 10
+window-padding-y = 10
+
+## Keybindings
+
+keybind = global:shift+escape=toggle_visibility
+keybind = cmd+shift+|=new_split:right
+#keybind = global:shift+`=toggle_quick_terminal
+keybind = global:super+d=unbind
+
+# Theme (other nice themes: Desert, )
+
+theme = "Kanagawa Wave"
