@@ -1,26 +1,50 @@
 return {
-  -- "rose-pine/neovim",
-  -- "tokyonight.nvim",
-  -- "ellisonleao/gruvbox.nvim",
-  -- "neanias/everforest-nvim",
-  -- "sainnhe/everforest",
-  -- "nordic.nvim",
-  -- "sainnhe/sonokai",
-  -- "rebelot/kanagawa.nvim",
-  -- "EdenEast/nightfox.nvim",
-  -- "olimorris/onedarkpro.nvim",
-  -- "ribru17/bamboo.nvim",
-  "tokyonight.nvim",
-  lazy = true,
-  priority = 1000,
-  opts = function()
-    return {
-      colorscheme = 'tokyonight',
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      flavour = "frappe", -- latte, frappe, macchiato, mocha
+      background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+      },
+      transparent_background = true, -- disables setting the background color.
+    },
+  },
+  {
+    "loctvl842/monokai-pro.nvim",
+    name = "monokai-pro",
+    priority = 1000,
+    opts = {
+      transparent_background = true, -- disables setting the background color.
+    },
+  },
+  { "rose-pine/neovim",
+    name = "rose-pine",
+    priority = 1000,
+    opts = {
+      variant = "moon", -- auto, main, moon, or dawn
+      -- dark_variant = "main", -- main, moon, or dawn
+      styles = {
+        transparency = true, 
+      },
+    }
+},
+  {"folke/tokyonight.nvim",
+    name = "tokyonight",
+    opts = {
       transparent = true,
       styles = {
         sidebars = "transparent",
         floats = "transparent",
       },
     }
-  end,
+},
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
+  },
 }
