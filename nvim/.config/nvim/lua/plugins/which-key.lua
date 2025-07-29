@@ -4,7 +4,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>a", group = "Actions", icon = { icon = "⚡ ", color = "yellow" } },
+        { "<leader>a", group = "actions", icon = { icon = "⚡ ", color = "yellow" } },
       },
     },
   },
