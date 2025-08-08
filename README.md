@@ -11,6 +11,9 @@ This is a repository of my custom dotfiles and configurations. Do not proceed if
 # install Homebrew packages (optionally, sub with preferred nerd font)
 brew install ripgrep stow zsh --cask ghostty font-maple-mono-nf
 
+# install opencode
+curl -sSL https://opencode.ai | bash
+
 # install OhMyZSH
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
