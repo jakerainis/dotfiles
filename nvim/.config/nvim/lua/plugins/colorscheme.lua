@@ -25,7 +25,6 @@ return {
     priority = 1000,
     opts = {
       variant = "moon", -- auto, main, moon, or dawn
-      -- dark_variant = "main", -- main, moon, or dawn
       styles = {
         transparency = true, 
       },

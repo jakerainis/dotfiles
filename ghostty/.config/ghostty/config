@@ -29,5 +29,5 @@ keybind = global:super+d=unbind
 
 # Theme (other nice themes: Desert, Kanagawa Wave)
 # theme = "rose-pine"
- theme = "Kanagawa Wave"
+theme = "Kanagawa Wave"
  

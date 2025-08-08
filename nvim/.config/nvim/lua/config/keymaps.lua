@@ -9,7 +9,7 @@ vim.keymap.set({ "n", "v" }, "<D-/>", "gcc", { desc = "Toggle comment", remap = 
 -- Multicusor (cmd+d)
 vim.keymap.set({ "n", "v" }, "<D-d>", "<C-n>", { desc = "Multi-cursor select next", remap = true })
 
--- MacOS MIRRORS 
+-- MacOS MIRRORS
 -- Line/word deletion (cmd/alt+backspace)
 vim.keymap.set({ "i", "n", "v" }, "<A-BS>", "<C-w>", { desc = "Delete preceding word" })
 vim.keymap.set({ "i", "n", "v" }, "<D-BS>", "<C-u>", { desc = "Delete to beginning of line" })
@@ -27,9 +27,9 @@ vim.keymap.set("i", "<D-S-Left>", "<Esc>v0", { desc = "Select to beginning of li
 vim.keymap.set("i", "<D-S-Right>", "<Esc>v$", { desc = "Select to end of line" })
 -- Prev/next word navigation (alt+left/right)
 vim.keymap.set({ "n", "v" }, "<M-Left>", "b", { desc = "Go to preceding word" })
-vim.keymap.set({ "n", "v" }, "<M-f>", "w", { desc = "Go to next word" })  -- Use M-f instead of M-Right
+vim.keymap.set({ "n", "v" }, "<M-f>", "w", { desc = "Go to next word" }) -- Use M-f instead of M-Right
 vim.keymap.set("i", "<M-Left>", "<C-o>b", { desc = "Go to preceding word" })
-vim.keymap.set("i", "<M-f>", "<C-o>w", { desc = "Go to next word" })   
+vim.keymap.set("i", "<M-f>", "<C-o>w", { desc = "Go to next word" })
 -- Prev/next word selection (shift+alt+left/right)
 vim.keymap.set("n", "<M-S-Left>", "vb", { desc = "Select to preceding word" })
 vim.keymap.set("n", "<M-S-Right>", "ve", { desc = "Select to next word end" })
@@ -46,3 +46,14 @@ vim.keymap.set("v", "{", "c{}<Esc>P", { desc = "Surround with braces", nowait = 
 
 -- GROUPED ACTIONS SUBMENU (<leader>a)
 vim.keymap.set({ "n", "v" }, "<leader>as", ":sort<CR>", { desc = "Sort" })
+
+-- FILE EXPLORER AND TELESCOPE KEYMAPS
+-- Telescope with hidden files
+vim.keymap.set("n", "<leader>fh", function()
+  require("telescope.builtin").find_files({ hidden = true })
+end, { desc = "Find files (including hidden)" })
+
+-- Telescope live grep with hidden files
+vim.keymap.set("n", "<leader>sh", function()
+  require("telescope.builtin").live_grep({ additional_args = { "--hidden", "--glob", "!.git/*" } })
+end, { desc = "Search in files (including hidden)" })
