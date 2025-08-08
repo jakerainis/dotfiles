@@ -3,11 +3,20 @@
 -- Use vim.keymap.set to create the keymaps (LazyVim style)
 
 -- GENERAL BINDINGS
+-- Disable arrow keys
+vim.keymap.set("n", "<Up>", "<Cmd>echo 'Use k instead'<CR>", { desc = "Disable Up Arrow" })
+vim.keymap.set("n", "<Down>", "<Cmd>echo 'Use j instead'<CR>", { desc = "Disable Down Arrow" })
+vim.keymap.set("n", "<Left>", "<Cmd>echo 'Use h instead'<CR>", { desc = "Disable Left Arrow" })
+vim.keymap.set("n", "<Right>", "<Cmd>echo 'Use l instead'<CR>", { desc = "Disable Right Arrow" })
+
 -- Comments (cmd+/)
 vim.keymap.set({ "n", "v" }, "<D-/>", "gcc", { desc = "Toggle comment", remap = true })
 
 -- Multicusor (cmd+d)
 vim.keymap.set({ "n", "v" }, "<D-d>", "<C-n>", { desc = "Multi-cursor select next", remap = true })
+
+-- Sort lines (cmd+shift+a)
+vim.keymap.set({ "n", "v" }, "<D-A>", ":sort<CR>", { desc = "Sort lines", remap = true })
 
 -- MacOS MIRRORS
 -- Line/word deletion (cmd/alt+backspace)
@@ -43,17 +52,3 @@ vim.keymap.set("v", "'", "c''<Esc>P", { desc = "Surround with single quotes", no
 vim.keymap.set("v", "(", "c()<Esc>P", { desc = "Surround with parentheses", nowait = true })
 vim.keymap.set("v", "[", "c[]<Esc>P", { desc = "Surround with brackets", nowait = true })
 vim.keymap.set("v", "{", "c{}<Esc>P", { desc = "Surround with braces", nowait = true })
-
--- GROUPED ACTIONS SUBMENU (<leader>a)
-vim.keymap.set({ "n", "v" }, "<leader>as", ":sort<CR>", { desc = "Sort" })
-
--- FILE EXPLORER AND TELESCOPE KEYMAPS
--- Telescope with hidden files
-vim.keymap.set("n", "<leader>fh", function()
-  require("telescope.builtin").find_files({ hidden = true })
-end, { desc = "Find files (including hidden)" })
-
--- Telescope live grep with hidden files
-vim.keymap.set("n", "<leader>sh", function()
-  require("telescope.builtin").live_grep({ additional_args = { "--hidden", "--glob", "!.git/*" } })
-end, { desc = "Search in files (including hidden)" })

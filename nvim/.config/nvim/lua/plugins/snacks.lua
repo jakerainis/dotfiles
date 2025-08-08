@@ -20,11 +20,12 @@ return {
     picker = {
       hidden = true,
       ignored = true,
+      exclude = { ".DS_Store" },
       sources = {
         files = {
-          hidden = true
-        }
-      }
+          hidden = true,
+        },
+      },
     },
   },
 }
