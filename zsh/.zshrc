@@ -18,7 +18,6 @@ else
   export EDITOR='nvim'
 fi
 
-
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 plugins=(
