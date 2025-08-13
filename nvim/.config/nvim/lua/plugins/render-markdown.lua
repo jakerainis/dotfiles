@@ -5,7 +5,7 @@ return {
     opts = {
       link = {
         enabled = false,
-      }
+      },
     },
   },
 }
