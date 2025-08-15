@@ -4,10 +4,10 @@
 
 -- GENERAL BINDINGS
 -- Disable arrow keys
-vim.keymap.set("n", "<Up>", "<Cmd>echo 'Use k instead'<CR>", { desc = "Disable Up Arrow" })
-vim.keymap.set("n", "<Down>", "<Cmd>echo 'Use j instead'<CR>", { desc = "Disable Down Arrow" })
-vim.keymap.set("n", "<Left>", "<Cmd>echo 'Use h instead'<CR>", { desc = "Disable Left Arrow" })
-vim.keymap.set("n", "<Right>", "<Cmd>echo 'Use l instead'<CR>", { desc = "Disable Right Arrow" })
+vim.keymap.set({ "i", "n", "v" }, "<Up>", "<Cmd>echo 'Use k instead'<CR>", { desc = "Disable Up Arrow" })
+vim.keymap.set({ "i", "n", "v" }, "<Down>", "<Cmd>echo 'Use j instead'<CR>", { desc = "Disable Down Arrow" })
+vim.keymap.set({ "i", "n", "v" }, "<Left>", "<Cmd>echo 'Use h instead'<CR>", { desc = "Disable Left Arrow" })
+vim.keymap.set({ "i", "n", "v" }, "<Right>", "<Cmd>echo 'Use l instead'<CR>", { desc = "Disable Right Arrow" })
 
 -- Comments (cmd+/)
 vim.keymap.set({ "n", "v" }, "<D-/>", "gcc", { desc = "Toggle comment", remap = true })
@@ -17,6 +17,11 @@ vim.keymap.set({ "n", "v" }, "<D-d>", "<C-n>", { desc = "Multi-cursor select nex
 
 -- Sort lines (cmd+shift+a)
 vim.keymap.set({ "n", "v" }, "<D-A>", ":sort<CR>", { desc = "Sort lines", remap = true })
+
+-- Shift+Tab unindents current line
+vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true })
+vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true })
+vim.keymap.set("i", "<S-Tab>", "<C-o><<", { noremap = true })
 
 -- MacOS MIRRORS
 -- Line/word deletion (cmd/alt+backspace)
