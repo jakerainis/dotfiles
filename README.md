@@ -7,7 +7,7 @@ This is a repository of my custom dotfiles and configurations. Do not proceed if
 ```bash
 # install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"p
-brew install elixir erland git lazygit neovim nvm opencode-ai/tap/opencode postgresql ripgrep stow zsh # packages
+brew install elixir erlang git lazygit neovim nvm opencode-ai/tap/opencode postgresql ripgrep stow zsh # packages
 brew install --cask ghostty font-maple-mono-nf # casks 
 
 # install OhMyZSH

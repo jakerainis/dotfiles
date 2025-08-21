@@ -10,6 +10,7 @@ return {
         inline_right = "`",
         language_icon = true,
         language_name = true,
+        width = "full",
       },
       link = {
         enabled = false,
