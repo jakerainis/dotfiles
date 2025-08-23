@@ -8,7 +8,7 @@
 
 adjust-cell-height= 4
 background-blur = true
-background-opacity = 0.9
+background-opacity = 0.95
 font-family = "Maple Mono NF"
 font-feature = calt
 font-feature = cv01
@@ -27,7 +27,6 @@ keybind = cmd+shift+_=new_split:down
 #keybind = global:shift+`=toggle_quick_terminal
 keybind = global:super+d=unbind
 
-# Theme (other nice themes: Desert, Kanagawa Wave)
-# theme = "rose-pine"
-theme = "Kanagawa Wave"
+# Theme (other nice themes: Desert, Kanagawa Wave, rose-pine)
+theme = "catppuccin-macchiato.conf"
  
