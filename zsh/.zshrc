@@ -38,6 +38,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 alias brewdump="brew bundle dump --file=~/dotfiles/Brewfile --force"
 alias copyssh="pbcopy < ~/.ssh/id_rsa.pub"
 alias dev="cd ~/Development/"
+alias docker="/Applications/Docker.app/Contents/Resources/bin/docker"
 alias rm='trash'
 alias src="source ~/.zshrc"
 alias vim="nvim"
