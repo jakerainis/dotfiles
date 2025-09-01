@@ -12,10 +12,23 @@ return {
   opts = function(_, opts)
     opts.servers = opts.servers or {}
     opts.servers["emmet_language_server"] = {
-      filetypes = { "html", "css", "javascript", "javascriptreact", "typescriptreact", "heex" },
+      filetypes = {
+        "css",
+        "elixir",
+        "ex",
+        "heex",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "phoenix-heex",
+        "typescriptreact",
+      },
       init_options = {
         includeLanguages = {
+          elixir = "html",
+          ex = "html",
           heex = "html",
+          ["phoenix-heex"] = "html",
         },
         showExpandedAbbreviation = "always",
         showAbbreviationSuggestions = true,
