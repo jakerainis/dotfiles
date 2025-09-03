@@ -32,9 +32,5 @@ vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true })
 vim.keymap.set({ "i", "n", "v" }, "<A-BS>", "<C-w>", { desc = "Delete preceding word" })
 vim.keymap.set({ "i", "n", "v" }, "<D-BS>", "<C-u>", { desc = "Delete to beginning of line" })
 
--- Surround with common pairs
--- vim.keymap.set("v", '"', 'c""<Esc>P', { desc = "Surround with double quotes", nowait = true })
--- vim.keymap.set("v", "'", "c''<Esc>P", { desc = "Surround with single quotes", nowait = true })
--- vim.keymap.set("v", "(", "c()<Esc>P", { desc = "Surround with parentheses", nowait = true })
--- vim.keymap.set("v", "[", "c[]<Esc>P", { desc = "Surround with brackets", nowait = true })
--- vim.keymap.set("v", "{", "c{}<Esc>P", { desc = "Surround with braces", nowait = true })
+-- Save file (cmd+s)
+vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { desc = "Save file" })

@@ -40,6 +40,7 @@ alias copyssh="pbcopy < ~/.ssh/id_rsa.pub"
 alias dev="cd ~/Development/"
 alias docker="/Applications/Docker.app/Contents/Resources/bin/docker"
 alias dotf="~/dotfiles"
+alias efd="docker-compose -f dev/docker-compose.yaml up --remove-orphans"
 alias rm='trash'
 alias src="source ~/.zshrc"
 alias vim="nvim"
