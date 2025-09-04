@@ -17,14 +17,13 @@ brew bundle --file=./Brewfile
 
 # Install OhMyZSH and plugins
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 # Use stow to symlink dotfiles
 stow ghostty
 stow git
 stow nvim 
-stow p10k 
+stow starship 
 stow zsh 
 
 # Manually configure .gitignore 

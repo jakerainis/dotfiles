@@ -8,10 +8,8 @@
 
 adjust-cell-height= 4
 background-blur = true
-background-opacity = 0.95
+background-opacity = 0.97
 font-family = "Maple Mono NF"
-font-feature = calt
-font-feature = cv01
 font-size = 14
 font-thicken = true
 macos-titlebar-style = transparent
@@ -24,13 +22,14 @@ window-padding-y = 10
 keybind = global:shift+escape=toggle_visibility
 keybind = cmd+shift+|=new_split:right
 keybind = cmd+shift+_=new_split:down
-#keybind = global:shift+`=toggle_quick_terminal
+keybind = global:shift+`=toggle_quick_terminal
 keybind = global:super+d=unbind
 
 # Theme (other nice themes: Desert, Kanagawa Wave, rose-pine)
-theme = "catppuccin-macchiato.conf"
- 
-# shaders
-custom-shader-animation = true
-custom-shader = shaders/bloom.glsl
-custom-shader = shaders/synesthaxia.glsl
+theme = "catppuccin-mocha.conf"
+
+# Shaders
+custom-shader = shaders/cursor_smear.glsl
+# custom-shader = shaders/cursor_blaze.glsl
+# custom-shader = shaders/cursor_frozen.glsl
+# custom-shader = shaders/synesthaxia.glsl
