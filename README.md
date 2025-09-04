@@ -24,6 +24,7 @@ stow ghostty
 stow git
 stow nvim 
 stow starship 
+stow tmux 
 stow zsh 
 
 # Manually configure .gitignore 
