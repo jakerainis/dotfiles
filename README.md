@@ -20,8 +20,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 # Use stow to symlink dotfiles
+stow direnv
 stow ghostty
 stow git
+stow mise 
 stow nvim 
 stow starship 
 stow tmux 

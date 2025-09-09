@@ -22,7 +22,7 @@ window-padding-y = 10
 keybind = global:shift+escape=toggle_visibility
 keybind = cmd+shift+|=new_split:right
 keybind = cmd+shift+_=new_split:down
-keybind = global:shift+`=toggle_quick_terminal
+keybind = global:alt+tab=toggle_quick_terminal
 keybind = global:super+d=unbind
 
 # Theme (other nice themes: Desert, Kanagawa Wave, rose-pine)

@@ -1,6 +1,9 @@
 export ZSH="$HOME/.oh-my-zsh"
 zstyle ':omz:update' mode auto
+
 eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
+eval "$(direnv hook zsh)"
 
 plugins=(
   brew
@@ -23,6 +26,7 @@ alias docker="/Applications/Docker.app/Contents/Resources/bin/docker"
 alias dotf="~/dotfiles"
 alias efc="cd ~/Development/exchange-flo-app/"
 alias efd="docker-compose -f dev/docker-compose.yaml up --remove-orphans"
+alias efs="source ~/Development/exchange-flo-app/.env"
 alias rm='trash'
 alias src="source ~/.zshrc"
 alias vim="nvim"
