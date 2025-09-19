@@ -65,3 +65,10 @@ map("n", "<leader>sf", function()
     LazyVim.pick("grep", { cwd = dir })()
   end
 end, { desc = "Grep (Custom Dir)" })
+
+-- -- Claude Code keymaps (greggh version)
+-- map("n", "<C-,>", "<cmd>ClaudeCodeToggle<cr>", { desc = "Toggle Claude Code terminal (greggh)" })
+-- map("n", "<leader>cc", "<cmd>ClaudeCodeContinue<cr>", { desc = "Continue Claude Code conversation (greggh)" })
+-- map("n", "<leader>cv", "<cmd>ClaudeCodeVerbose<cr>", { desc = "Enable Claude Code verbose mode (greggh)" })
+
+-- Coder/claudecode keymaps are defined in the plugin file
