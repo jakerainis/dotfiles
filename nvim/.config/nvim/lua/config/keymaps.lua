@@ -43,25 +43,25 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true, desc = "Copy relative path" }
 )
 
--- local map = LazyVim.safe_keymap_set
---
--- -- Format the current buffer as JSON
--- map("n", "<leader>cj", function()
---   local cursor_pos = vim.fn.getcurpos()
---   vim.cmd(":%!jq .")
---   vim.fn.setpos(".", cursor_pos)
--- end, { desc = "Format JSON with jq" })
---
--- map("n", "<leader>cx", function()
---   local cursor_pos = vim.fn.getcurpos()
---   vim.cmd(":%!xmllint --format -")
---   vim.fn.setpos(".", cursor_pos)
--- end, { desc = "Format XML with xmllint" })
---
--- -- Custom directory search
--- map("n", "<leader>sf", function()
---   local dir = vim.fn.input("Search in directory: ", vim.fn.getcwd() .. "/", "dir")
---   if dir ~= "" then
---     LazyVim.pick("grep", { cwd = dir })()
---   end
--- end, { desc = "Grep (Custom Dir)" })
+local map = LazyVim.safe_keymap_set
+
+-- Format the current buffer as JSON
+map("n", "<leader>cj", function()
+  local cursor_pos = vim.fn.getcurpos()
+  vim.cmd(":%!jq .")
+  vim.fn.setpos(".", cursor_pos)
+end, { desc = "Format JSON with jq" })
+
+map("n", "<leader>cx", function()
+  local cursor_pos = vim.fn.getcurpos()
+  vim.cmd(":%!xmllint --format -")
+  vim.fn.setpos(".", cursor_pos)
+end, { desc = "Format XML with xmllint" })
+
+-- Custom directory search
+map("n", "<leader>sf", function()
+  local dir = vim.fn.input("Search in directory: ", vim.fn.getcwd() .. "/", "dir")
+  if dir ~= "" then
+    LazyVim.pick("grep", { cwd = dir })()
+  end
+end, { desc = "Grep (Custom Dir)" })

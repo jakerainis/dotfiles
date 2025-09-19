@@ -23,13 +23,13 @@ alias brewdump="brew bundle dump --file=~/dotfiles/Brewfile --force"
 alias copyssh="pbcopy < ~/.ssh/id_rsa.pub"
 alias dev="cd ~/Development/"
 alias docker="/Applications/Docker.app/Contents/Resources/bin/docker"
-alias dotf="~/dotfiles"
+alias df="~/dotfiles"
 alias efc="cd ~/Development/exchange-flo-app/"
 alias efd="docker-compose -f dev/docker-compose.yaml up --remove-orphans"
 alias efs="source ~/Development/exchange-flo-app/.env"
 alias rm='trash'
 alias src="source ~/.zshrc"
 alias vim="nvim"
-alias zshconfig="vim ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
 
 source $ZSH/oh-my-zsh.sh
