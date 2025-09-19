@@ -1,3 +1,6 @@
+# Dotfiles
+tmux/plugins
+
 ### OSX ###
 *.DS_Store 
 .AppleDouble 

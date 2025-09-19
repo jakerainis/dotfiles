@@ -13,7 +13,7 @@ font-family = "Maple Mono NF"
 font-size = 14
 font-thicken = true
 macos-titlebar-style = transparent
-quick-terminal-animation-duration = .25
+quick-terminal-animation-duration = 0.1
 window-padding-x = 10
 window-padding-y = 10
 
