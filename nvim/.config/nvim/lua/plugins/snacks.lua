@@ -22,21 +22,24 @@ return {
     picker = {
       sources = {
         files = {
+          exclude = ignore_list,
+          git = true,
           hidden = true,
           ignored = false,
-          git = true,
-          exclude = ignore_list,
         },
         grep = {
+          exclude = ignore_list,
+          git = true,
           hidden = true,
           ignored = false,
-          git = true,
-          exclude = ignore_list,
         },
       },
     },
     explorer = {
+      follow_cwd = false,
+      git = true,
       hidden = true,
+      ignored = true,
     },
   },
 }
