@@ -34,7 +34,6 @@ return {
           ignored = false,
         },
         explorer = {
-          follow_cwd = false,
           git = true,
           hidden = true,
           ignored = true,

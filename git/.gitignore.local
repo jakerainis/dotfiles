@@ -9,6 +9,7 @@
 # Misc files
 .env
 .eslintcache
+.expert
 .next
 .node_repl_history
 .npm
