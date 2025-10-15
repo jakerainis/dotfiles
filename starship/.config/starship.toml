@@ -15,11 +15,6 @@ $cmd_duration\
 $line_break\
 $character"""
 
-# right_format = """
-# [](lavender)\
-# $time
-# [](lavender) """
-
 palette = 'catppuccin_frappe'
 
 [os]

@@ -1,3 +1,4 @@
+brew "chafa"
 brew "direnv"
 brew "elixir"
 brew "erlang"
