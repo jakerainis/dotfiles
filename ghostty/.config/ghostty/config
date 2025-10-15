@@ -30,7 +30,7 @@ keybind = global:super+d=unbind
 
 # Theme (other nice themes: Desert, Kanagawa Wave, rose-pine)
 # theme = "catppuccin-mocha.conf"
-theme = "everforest-dark.conf"
+theme = "Everforest Dark Hard"
 
 # Shaders
 custom-shader = shaders/cursor_smear.glsl

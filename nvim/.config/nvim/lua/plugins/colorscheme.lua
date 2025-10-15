@@ -13,14 +13,6 @@ return {
     },
   },
   {
-    "loctvl842/monokai-pro.nvim",
-    name = "monokai-pro",
-    priority = 1000,
-    opts = {
-      transparent_background = true,
-    },
-  },
-  {
     "rose-pine/neovim",
     name = "rose-pine",
     priority = 1000,
@@ -28,17 +20,6 @@ return {
       variant = "moon", -- auto, main, moon, or dawn
       styles = {
         transparency = true,
-      },
-    },
-  },
-  {
-    "folke/tokyonight.nvim",
-    name = "tokyonight",
-    opts = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
       },
     },
   },
@@ -58,6 +39,11 @@ return {
       dim_inactive_windows = false,
       diagnostic_text_highlight = true,
       diagnostic_virtual_text = "coloured",
+      on_highlights = function(hl, palette)
+        -- Make hidden/gitignored files in snacks explorer more visible
+        hl.SnacksPickerPathHidden = { fg = palette.grey0, italic = true }
+        hl.SnacksPickerPathIgnored = { fg = palette.grey0, italic = true }
+      end,
     },
   },
   {

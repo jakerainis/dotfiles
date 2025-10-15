@@ -34,6 +34,7 @@ return {
           ignored = false,
         },
         explorer = {
+          exclude = { ".DS_Store" },
           git = true,
           hidden = true,
           ignored = true,

@@ -23,15 +23,22 @@ git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zs
 stow direnv
 stow ghostty
 stow git
-stow mise 
-stow nvim 
-stow starship 
-stow tmux 
-stow zsh 
+stow mise
+stow nvim
+stow starship
+stow tmux
+stow zsh
 
-# Manually configure .gitignore 
+# Manually configure .gitignore
 cp ~/dotfilesgit/.gitignore.local ~/.gitignore
 ```
+
+### Misc. todos
+
+[] - Revise starship config
+[] - Fix broken poster
+[] - Tmux
+[] - Cleanup
 
 ---
 
