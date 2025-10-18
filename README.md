@@ -35,10 +35,7 @@ cp ~/dotfilesgit/.gitignore.local ~/.gitignore
 
 ### Misc. todos
 
-[] - Revise starship config
-[] - Fix broken poster
-[] - Tmux
-[] - Cleanup
+[] - Tmux setup?
 
 ---
 

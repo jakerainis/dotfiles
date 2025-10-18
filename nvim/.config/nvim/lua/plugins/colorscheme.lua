@@ -30,13 +30,13 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      background = "hard",
+      background = "hard", -- hard, medium, soft
       transparent_background_level = 0.95,
       italics = true,
+      dim_inactive_windows = true,
       disable_italic_comments = false,
       sign_column_background = "none",
       ui_contrast = "high",
-      dim_inactive_windows = false,
       diagnostic_text_highlight = true,
       diagnostic_virtual_text = "coloured",
       on_highlights = function(hl, palette)

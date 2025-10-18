@@ -11,6 +11,6 @@ return {
     })
 
     vim.keymap.set("n", "<leader>ut", uuid.toggle_highlighting)
-    vim.keymap.set("i", "<C-u>", uuid.insert_v4)
+    vim.keymap.set("i", "<C-U>", uuid.insert_v4)
   end,
 }
