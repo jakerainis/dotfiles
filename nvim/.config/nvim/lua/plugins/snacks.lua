@@ -1,4 +1,12 @@
-local ignore_list = { "node_modules", ".elixir_ls", "_build", "deps", "tmux/.config/tmux/plugins", ".DS_Store" }
+local ignore_list = {
+  ".DS_Store",
+  ".elixir_ls",
+  ".expert",
+  "_build",
+  "deps",
+  "node_modules",
+  "tmux/.config/tmux/plugins",
+}
 
 return {
   "folke/snacks.nvim",
