@@ -1,4 +1,15 @@
-local ignore_list = {
+local explorer_ignore = {
+  ".claude",
+  ".devcontainer",
+  ".DS_Store",
+  ".elixir_ls",
+  ".expert",
+  ".git",
+  "_build",
+}
+
+local picker_ignore = {
+  ".claude",
   ".DS_Store",
   ".elixir_ls",
   ".expert",
@@ -31,19 +42,19 @@ return {
     picker = {
       sources = {
         files = {
-          exclude = ignore_list,
+          exclude = picker_ignore,
           git = true,
           hidden = true,
           ignored = false,
         },
         grep = {
-          exclude = ignore_list,
+          exclude = picker_ignore,
           git = true,
           hidden = true,
           ignored = false,
         },
         explorer = {
-          exclude = { ".DS_Store" },
+          exclude = explorer_ignore,
           git = true,
           hidden = true,
           ignored = true,

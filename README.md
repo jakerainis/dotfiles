@@ -23,6 +23,7 @@ git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zs
 stow direnv
 stow ghostty
 stow git
+stow lazygit
 stow mise
 stow nvim
 stow starship

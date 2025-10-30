@@ -2,12 +2,12 @@
 
 format = """
 $directory\
-$character"""
-
-right_format = """
 $git_branch\
 $git_state\
 $git_status\
+$character"""
+
+right_format = """
 """
 
 add_newline = false
@@ -31,7 +31,6 @@ format = '[@$hostname]($style) '
 style = "fg:orange"
 read_only_style = "fg:orange"
 truncation_length = 0
-# truncation_symbol = "…/"
 format = "[$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
