@@ -24,9 +24,15 @@ alias copyssh="pbcopy < ~/.ssh/id_rsa.pub"
 alias dev="cd ~/Development/"
 alias docker="/Applications/Docker.app/Contents/Resources/bin/docker"
 alias df="~/dotfiles"
+
+#EF helpers
 alias efc="cd ~/Development/exchange-flo-app/"
 alias efd="docker-compose -f dev/docker-compose.yaml up --remove-orphans"
+alias efdata="cd ~/Development/exchange-flo-app/apps/ef_data/"
+alias efportal="cd ~/Development/exchange-flo-app/apps/ef_portal/"
+alias efpubapi="cd ~/Development/exchange-flo-app/apps/ef_publisher_api//"
 alias efs="source ~/Development/exchange-flo-app/.env"
+
 alias rm='trash'
 alias src="source ~/.zshrc"
 alias vim="nvim"

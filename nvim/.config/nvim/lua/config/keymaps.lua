@@ -35,13 +35,39 @@ vim.keymap.set({ "i", "n", "v" }, "<D-BS>", "<C-u>", { desc = "Delete to beginni
 -- Save file (cmd+s)
 vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { desc = "Save file" })
 
--- Copy relative path of current buffer
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>r",
-  ':let @+=expand("%:.")<CR>',
-  { noremap = true, silent = true, desc = "Copy relative path" }
-)
+-- Copy relative path of current buffer with line numbers
+local function copy_path_with_lines()
+  local relative_path = vim.fn.expand("%:.")
+  local mode = vim.api.nvim_get_mode().mode
+
+  local result
+  if mode == "v" or mode == "V" or mode == "\22" then -- visual, visual-line, or visual-block
+    local start_line = vim.fn.line("v")
+    local end_line = vim.fn.line(".")
+    -- Ensure start_line <= end_line
+    if start_line > end_line then
+      start_line, end_line = end_line, start_line
+    end
+
+    if start_line == end_line then
+      result = string.format("%s:%d", relative_path, start_line)
+    else
+      result = string.format("%s:%d-%d", relative_path, start_line, end_line)
+    end
+  else -- normal mode
+    local current_line = vim.fn.line(".")
+    result = string.format("%s:%d", relative_path, current_line)
+  end
+
+  vim.fn.setreg("+", result)
+  vim.notify("Copied: " .. result, vim.log.levels.INFO)
+end
+
+vim.keymap.set({ "n", "v" }, "<leader>r", copy_path_with_lines, {
+  noremap = true,
+  silent = true,
+  desc = "Copy relative path with line numbers"
+})
 
 -- Custom directory search
 LazyVim.safe_keymap_set("n", "<leader>sf", function()
