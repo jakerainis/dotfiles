@@ -1,6 +1,0 @@
-os:
-  # Open files in a buffer instead of a new tab
-  edit: 'nvim {{filename}}'
-  editAtLine: 'nvim +{{line}} {{filename}}'
-  editAtLineAndWait: 'nvim +{{line}} {{filename}}'
-  editInTerminal: true
