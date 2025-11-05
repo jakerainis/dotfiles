@@ -9,8 +9,6 @@ return {
       quotes = "none",
       insert = "before",
     })
-
-    vim.keymap.set("n", "<leader>ut", uuid.toggle_highlighting)
-    vim.keymap.set("i", "<C-U>", uuid.insert_v4)
+    vim.keymap.set("i", "<C-d>", uuid.insert_v4, { desc = "Insert UUID" })
   end,
 }
