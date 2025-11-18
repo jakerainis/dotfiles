@@ -2,6 +2,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    lazy = false,
     priority = 1000,
     opts = {
       flavour = "macchiato", -- latte, frappe, macchiato, mocha
@@ -15,6 +16,7 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
+    lazy = false,
     priority = 1000,
     opts = {
       variant = "moon", -- auto, main, moon, or dawn
@@ -30,7 +32,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      background = "hard", -- hard, medium, soft
+      background = "medium", -- hard, medium, soft
       transparent_background_level = 0.95,
       italics = true,
       dim_inactive_windows = true,
@@ -46,10 +48,27 @@ return {
       end,
     },
   },
+
+  {
+    "rebelot/kanagawa.nvim",
+    name = "kanagawa",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true, -- do not set background color
+      dimInactive = true, -- dim inactive window `:h hl-NormalNC`
+      theme = "dragon", -- Load "wave" theme
+      background = { -- map the value of 'background' option to a theme
+        dark = "dragon", -- try "dragon" !
+        light = "lotus",
+      },
+    },
+  },
   {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "everforest",
+      -- colorscheme = "kanagawa",
     },
   },
 }
