@@ -1,4 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 zstyle ':omz:update' mode auto
 
 eval "$(starship init zsh)"

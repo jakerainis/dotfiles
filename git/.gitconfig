@@ -1,14 +1,11 @@
 [core]
   editor = nvim
   fileMode = false
-
 [user]
   name = Jake Rainis
   email = jakerainis@gmail.com
-
 [init]
 	defaultBranch = main
-
 [push]
 	autoSetupRemote = true
 [remote "origin"]

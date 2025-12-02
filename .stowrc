@@ -1,0 +1,14 @@
+--target=~/.config
+--ignore=\.stowrc
+--ignore=DS_Store
+--ignore=^\.git$
+--ignore=^\.gitignore$
+--ignore=^\.claude$
+--ignore=^\.expert$
+--ignore=^README\.md$
+--ignore=^LICENSE$
+--ignore=^Brewfile$
+--ignore=^wallpapers$
+--ignore=^setup\.sh$
+--ignore=^git$
+--ignore=^zsh$

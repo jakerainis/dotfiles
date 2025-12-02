@@ -19,22 +19,8 @@ brew bundle --file=./Brewfile
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
-# Use stow to symlink dotfiles
-stow aerospace
-stow direnv
-stow ghostty
-stow git
-stow lazygit
-stow mise
-stow nvim
-stow opencode
-stow starship
-stow tmux
-stow yazi
-stow zsh
-
-# Manually configure .gitignore
-cp ~/dotfilesgit/.gitignore.local ~/.gitignore
+# Symlink all dotfiles
+./setup.sh
 ```
 
 ---
