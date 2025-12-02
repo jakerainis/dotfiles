@@ -33,7 +33,7 @@ alias efportal="cd ~/Development/exchange-flo-app/apps/ef_portal/"
 alias efpubapi="cd ~/Development/exchange-flo-app/apps/ef_publisher_api//"
 alias efs="source ~/Development/exchange-flo-app/.env"
 
-alias rm='trash'
+# alias rm='trash'
 alias src="source ~/.zshrc"
 alias vim="nvim"
 alias zshconfig="nvim ~/.zshrc"

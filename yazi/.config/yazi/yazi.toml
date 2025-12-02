@@ -1,0 +1,10 @@
+[mgr]
+ratio = [1, 2, 2]
+show_hidden = true
+show_symlink = true
+
+[opener]
+edit = [
+  { run = 'cd "$@" && nvim "$@"', block = true, for = "unix" },
+]
+

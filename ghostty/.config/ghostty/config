@@ -8,7 +8,7 @@
 
 adjust-cell-height= 4
 background-blur = true
-background-opacity = 0.93
+background-opacity = 0.85
 font-family = "JetBrainsMono Nerd Font"
 font-size = 16
 font-thicken = true
