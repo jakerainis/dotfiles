@@ -15,10 +15,6 @@ This is a repository of my custom dotfiles and configurations. Do not proceed if
 # Install Homebrew dependencies from Brewfile
 brew bundle --file=./Brewfile
 
-# Install OhMyZSH and plugins
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-
 # Symlink all dotfiles
 ./setup.sh
 ```

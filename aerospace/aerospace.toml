@@ -39,17 +39,16 @@ persistent-workspaces = ["1", "2", "3", "4", "5", "6"]
   run = 'layout floating'
 
 [[on-window-detected]]
-  if.app-name-regex-substring = 'finder'
-  run = 'layout floating'
+if.app-name-regex-substring = 'code'
+run = 'layout floating'
 
 [[on-window-detected]]
-  if.app-name-regex-substring = 'ghostty'
+  if.app-name-regex-substring = 'finder'
   run = 'layout floating'
 
 [[on-window-detected]]
   if.app-name-regex-substring = 'tableplus'
   run = 'layout floating'
-
 
 [key-mapping]
     preset = 'qwerty'

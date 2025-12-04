@@ -1,4 +1,4 @@
 [tools]
 elixir = "1.19.3"
 erlang = "28.2"
-node = "22.12.0"
+node = "25.2.1"
