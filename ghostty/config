@@ -6,6 +6,8 @@
 
 ## Terminal settings
 
+gtk-single-instance = false
+clipboard-paste-protection = false
 adjust-cell-height= 4
 background-blur = true
 background-opacity = 0.93
