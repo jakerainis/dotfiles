@@ -6,15 +6,14 @@
 
 ## Terminal settings
 
-gtk-single-instance = false
-clipboard-paste-protection = false
 adjust-cell-height= 4
 background-blur = true
 background-opacity = 0.93
 font-family = "JetBrainsMono Nerd Font"
 font-size = 16
 font-thicken = true
-macos-titlebar-style = transparent
+# macos-titlebar-style = transparent
+macos-titlebar-style = hidden
 quick-terminal-animation-duration = 0.1
 quick-terminal-position=center
 quick-terminal-size = 90%
