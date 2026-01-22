@@ -22,6 +22,8 @@ local picker_ignore = {
 return {
   "folke/snacks.nvim",
   opts = {
+    -- Disable input to avoid conflict with noice cmdline
+    input = { enabled = false },
     dashboard = {
       preset = {
         header = [[

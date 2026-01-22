@@ -8,12 +8,12 @@
 
 adjust-cell-height= 4
 background-blur = true
-background-opacity = 0.93
+background-opacity = 1
 font-family = "JetBrainsMono Nerd Font"
 font-size = 16
 font-thicken = true
-# macos-titlebar-style = transparent
-macos-titlebar-style = hidden
+macos-titlebar-style = transparent
+# macos-titlebar-style = hidden
 quick-terminal-animation-duration = 0.1
 quick-terminal-position=center
 quick-terminal-size = 90%
@@ -35,9 +35,8 @@ keybind = cmd+shift+_=new_split:down
 keybind = global:alt+tab=toggle_quick_terminal
 
 # Theme (other nice themes: Desert, Kanagawa Wave, rose-pine)
-# theme = "catppuccin-mocha.conf"
 theme = "Everforest Dark Hard"
-# theme = "Kanagawa Dragon"
+theme = evergarden-spring-skye.yml
 
 # Shaders
 custom-shader = shaders/synesthaxia.glsl
