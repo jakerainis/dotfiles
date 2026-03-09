@@ -2,6 +2,14 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Use vim.keymap.set to create the keymaps (LazyVim style)
 
+-- Don't clobber clipboard on delete, change, or paste-over
+vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true, desc = "Delete without yanking" })
+vim.keymap.set({ "n", "v" }, "D", '"_D', { noremap = true, desc = "Delete to EOL without yanking" })
+vim.keymap.set({ "n", "v" }, "c", '"_c', { noremap = true, desc = "Change without yanking" })
+vim.keymap.set({ "n", "v" }, "C", '"_C', { noremap = true, desc = "Change to EOL without yanking" })
+vim.keymap.set("n", "x", '"_x', { noremap = true, desc = "Delete char without yanking" })
+vim.keymap.set("v", "p", '"_dP', { noremap = true, desc = "Paste without yanking replaced text" })
+
 -- GENERAL BINDINGS
 -- Disable arrow keys
 vim.keymap.set({ "i", "n", "v" }, "<Up>", "<Cmd>echo 'Use k instead'<CR>", { desc = "Disable Up Arrow" })

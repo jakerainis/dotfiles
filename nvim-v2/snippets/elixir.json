@@ -1,0 +1,12 @@
+{
+  "Comment Block": {
+    "prefix": "comment",
+    "body": [
+      "##########################",
+      "# ${1:description}",
+      "##########################",
+      "$0"
+    ],
+    "description": "Section comment block"
+  }
+}
