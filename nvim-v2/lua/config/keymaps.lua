@@ -68,7 +68,6 @@ map({ "n", "v" }, "<D-A>", ":sort<CR>", { desc = "Sort lines" })
 map({ "i", "n", "v" }, "<A-BS>", "<C-w>", { desc = "Delete preceding word" })
 map({ "i", "n", "v" }, "<D-BS>", "<C-u>", { desc = "Delete to beginning of line" })
 map({ "n", "v" }, "<D-/>", "gcc", { desc = "Toggle comment", remap = true })
-map({ "n", "v" }, "<D-d>", "<C-n>", { desc = "Multi-cursor select next", remap = true })
 
 --------------------------------------------------------------------------------
 -- CODE UTILITIES
@@ -100,13 +99,5 @@ map(
   fn.copy_path_with_lines,
   { noremap = true, silent = true, desc = "Copy path with line numbers" }
 )
+map("n", "<leader>ya", "<cmd>%y+<CR>", { desc = "Yank entire file" })
 map("n", "<leader>yp", fn.open_from_clipboard, { desc = "Open file:line from clipboard" })
-
---------------------------------------------------------------------------------
--- DISABLED KEYS
---------------------------------------------------------------------------------
-
-map({ "i", "n", "v" }, "<Up>", "<Cmd>echo 'Use k instead'<CR>", { desc = "Disable Up Arrow" })
-map({ "i", "n", "v" }, "<Down>", "<Cmd>echo 'Use j instead'<CR>", { desc = "Disable Down Arrow" })
-map({ "i", "n", "v" }, "<Left>", "<Cmd>echo 'Use h instead'<CR>", { desc = "Disable Left Arrow" })
-map({ "i", "n", "v" }, "<Right>", "<Cmd>echo 'Use l instead'<CR>", { desc = "Disable Right Arrow" })
