@@ -1,84 +1,103 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Use vim.keymap.set to create the keymaps (LazyVim style)
+-- Keymaps
+local map = vim.keymap.set
+local fn = require("config.functions")
 
--- Don't clobber clipboard on delete, change, or paste-over
-vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true, desc = "Delete without yanking" })
-vim.keymap.set({ "n", "v" }, "D", '"_D', { noremap = true, desc = "Delete to EOL without yanking" })
-vim.keymap.set({ "n", "v" }, "c", '"_c', { noremap = true, desc = "Change without yanking" })
-vim.keymap.set({ "n", "v" }, "C", '"_C', { noremap = true, desc = "Change to EOL without yanking" })
-vim.keymap.set("n", "x", '"_x', { noremap = true, desc = "Delete char without yanking" })
-vim.keymap.set("v", "p", '"_dP', { noremap = true, desc = "Paste without yanking replaced text" })
+--------------------------------------------------------------------------------
+-- GENERAL
+--------------------------------------------------------------------------------
 
--- GENERAL BINDINGS
--- Disable arrow keys
-vim.keymap.set({ "i", "n", "v" }, "<Up>", "<Cmd>echo 'Use k instead'<CR>", { desc = "Disable Up Arrow" })
-vim.keymap.set({ "i", "n", "v" }, "<Down>", "<Cmd>echo 'Use j instead'<CR>", { desc = "Disable Down Arrow" })
-vim.keymap.set({ "i", "n", "v" }, "<Left>", "<Cmd>echo 'Use h instead'<CR>", { desc = "Disable Left Arrow" })
-vim.keymap.set({ "i", "n", "v" }, "<Right>", "<Cmd>echo 'Use l instead'<CR>", { desc = "Disable Right Arrow" })
+map("n", "<Esc>", "<Cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
+map("n", "<leader>qq", "<cmd>qa<CR>", { desc = "Quit all" })
+map("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "Lazy" })
+map({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { desc = "Save file" })
 
--- Comments (cmd+/)
-vim.keymap.set({ "n", "v" }, "<D-/>", "gcc", { desc = "Toggle comment", remap = true })
+--------------------------------------------------------------------------------
+-- NAVIGATION
+--------------------------------------------------------------------------------
 
--- Multicusor (cmd+d)
-vim.keymap.set({ "n", "v" }, "<D-d>", "<C-n>", { desc = "Multi-cursor select next", remap = true })
+map("n", "<C-d>", "<C-d>", { desc = "Scroll down" })
+map("n", "<C-u>", "<C-u>", { desc = "Scroll up" })
+map("n", "n", "'Nn'[v:searchforward].'zzzv'", { expr = true, desc = "Next search result" })
+map("n", "N", "'nN'[v:searchforward].'zzzv'", { expr = true, desc = "Prev search result" })
 
--- Sort lines (cmd+shift+a)
-vim.keymap.set({ "n", "v" }, "<D-A>", ":sort<CR>", { desc = "Sort lines", remap = true })
+--------------------------------------------------------------------------------
+-- WINDOWS
+--------------------------------------------------------------------------------
 
--- Tab indents current line
-vim.keymap.set("n", "<Tab>", ">>", { noremap = true })
-vim.keymap.set("v", "<Tab>", ">gv", { noremap = true })
+map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+map("n", "<leader>wr", fn.resize_mode, { desc = "Resize mode (h/j/k/l)" })
+map("n", "<leader>w=", "<C-w>=", { desc = "Equal window sizes" })
+map("n", "<leader>w|", "<C-w>|", { desc = "Max width" })
+map("n", "<leader>w_", "<C-w>_", { desc = "Max height" })
+map("n", "<leader>-", "<cmd>split<CR>", { desc = "Horizontal split" })
+map("n", "<leader>|", "<cmd>vsplit<CR>", { desc = "Vertical split" })
 
--- Shift+Tab unindents current line
-vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true })
-vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true })
+--------------------------------------------------------------------------------
+-- TERMINAL
+--------------------------------------------------------------------------------
 
--- Line/word deletion (cmd/alt+backspace)
-vim.keymap.set({ "i", "n", "v" }, "<A-BS>", "<C-w>", { desc = "Delete preceding word" })
-vim.keymap.set({ "i", "n", "v" }, "<D-BS>", "<C-u>", { desc = "Delete to beginning of line" })
+map("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Go to left window" })
+map("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Go to lower window" })
+map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Go to upper window" })
+map("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Go to right window" })
+map({ "n", "t" }, "<C-/>", fn.toggle_terminal, { desc = "Toggle terminal" })
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map("t", "gf", "<C-\\><C-n>gf", { desc = "Open file under cursor" })
 
--- Save file (cmd+s)
-vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { desc = "Save file" })
+--------------------------------------------------------------------------------
+-- BUFFERS
+--------------------------------------------------------------------------------
 
--- Copy relative path of current buffer with line numbers
-local function copy_path_with_lines()
-  local relative_path = vim.fn.expand("%:.")
-  local mode = vim.api.nvim_get_mode().mode
+map("n", "<leader>bb", "<cmd>e #<CR>", { desc = "Switch to other buffer" })
+map("n", "<leader>bD", "<cmd>bdelete<CR><cmd>close<CR>", { desc = "Delete buffer and window" })
+map("n", "<leader>bo", fn.delete_other_buffers, { desc = "Delete other buffers" })
+map("n", "<leader>fn", "<cmd>enew<CR>", { desc = "New buffer" })
 
-  local result
-  if mode == "v" or mode == "V" or mode == "\22" then -- visual, visual-line, or visual-block
-    local start_line = vim.fn.line("v")
-    local end_line = vim.fn.line(".")
-    -- Ensure start_line <= end_line
-    if start_line > end_line then
-      start_line, end_line = end_line, start_line
-    end
+--------------------------------------------------------------------------------
+-- EDITING
+--------------------------------------------------------------------------------
 
-    if start_line == end_line then
-      result = string.format("%s:%d", relative_path, start_line)
-    else
-      result = string.format("%s:%d-%d", relative_path, start_line, end_line)
-    end
-  else -- normal mode
-    local current_line = vim.fn.line(".")
-    result = string.format("%s:%d", relative_path, current_line)
-  end
+map("n", "<Tab>", ">>", { noremap = true, desc = "Indent line" })
+map("v", "<Tab>", ">gv", { noremap = true, desc = "Indent selection" })
+map("n", "<S-Tab>", "<<", { noremap = true, desc = "Unindent line" })
+map("v", "<S-Tab>", "<gv", { noremap = true, desc = "Unindent selection" })
+map({ "n", "v" }, "<D-A>", ":sort<CR>", { desc = "Sort lines" })
+map({ "i", "n", "v" }, "<A-BS>", "<C-w>", { desc = "Delete preceding word" })
+map({ "i", "n", "v" }, "<D-BS>", "<C-u>", { desc = "Delete to beginning of line" })
+map({ "n", "v" }, "<D-/>", "gcc", { desc = "Toggle comment", remap = true })
 
-  vim.fn.setreg("+", result)
-  vim.notify("Copied: " .. result, vim.log.levels.INFO)
-end
+--------------------------------------------------------------------------------
+-- CODE UTILITIES
+--------------------------------------------------------------------------------
 
-vim.keymap.set({ "n", "v" }, "<leader>r", copy_path_with_lines, {
-  noremap = true,
-  silent = true,
-  desc = "Copy relative path with line numbers",
-})
+map("n", "<leader>cj", fn.format_with("jq ."), { desc = "Format JSON with jq" })
+map("n", "<leader>cx", fn.format_with("xmllint --format -"), { desc = "Format XML with xmllint" })
 
--- Custom directory search
-LazyVim.safe_keymap_set("n", "<leader>sf", function()
-  local dir = vim.fn.input("Search in directory: ", vim.fn.getcwd() .. "/", "dir")
-  if dir ~= "" then
-    LazyVim.pick("grep", { cwd = dir })()
-  end
-end, { desc = "Grep (Custom Dir)" })
+--------------------------------------------------------------------------------
+-- YANK / CLIPBOARD
+--------------------------------------------------------------------------------
+
+map({ "n", "v" }, "d", '"_d', { noremap = true, desc = "Delete without yanking" })
+map({ "n", "v" }, "D", '"_D', { noremap = true, desc = "Delete to EOL without yanking" })
+map({ "n", "v" }, "c", '"_c', { noremap = true, desc = "Change without yanking" })
+map({ "n", "v" }, "C", '"_C', { noremap = true, desc = "Change to EOL without yanking" })
+map("x", "p", [["_dP]], { desc = "Paste without overwriting register" })
+
+map({ "n", "v" }, "<leader>yf", fn.copy_path, { noremap = true, silent = true, desc = "Copy file path" })
+map(
+  { "n", "v" },
+  "<leader>yl",
+  fn.copy_path_with_lines,
+  { noremap = true, silent = true, desc = "Copy path with line numbers" }
+)
+map(
+  { "n", "v" },
+  "<leader>r",
+  fn.copy_path_with_lines,
+  { noremap = true, silent = true, desc = "Copy path with line numbers" }
+)
+map("n", "<leader>ya", "<cmd>%y+<CR>", { desc = "Yank entire file" })
+map("n", "<leader>yp", fn.open_from_clipboard, { desc = "Open file:line from clipboard" })

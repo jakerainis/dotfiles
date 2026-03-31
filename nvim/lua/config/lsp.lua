@@ -25,6 +25,9 @@ vim.lsp.enable("tailwindcss")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("yamlls")
 
+-- Override built-in gr* group with a single gr → references mapping
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
+
 -- Keymaps (only active when an LSP is attached to the buffer)
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
@@ -34,7 +37,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     map("n", "gd", vim.lsp.buf.definition, "Go to definition")
     map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-    map("n", "gr", vim.lsp.buf.references, "Go to references")
     map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
     map("n", "K", vim.lsp.buf.hover, "Hover documentation")
     map("n", "<leader>cr", vim.lsp.buf.rename, "Rename symbol")

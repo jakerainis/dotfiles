@@ -28,11 +28,11 @@ alias ll="eza -1 -l --color=always --icons=always"
 alias src="source ~/.zshrc"
 alias tmk="tmux kill-server"
 alias v="nvim"
-alias v2="NVIM_APPNAME=nvim-v2 nvim"
 alias vim="nvim"
 alias zshconfig="nvim ~/.zshrc"
 
 # EF helpers
+alias dcc="MIX_ENV=dev efc && ../ef-utils/delete_qb_cards.sh"
 alias efc="cd ~/Development/exchange-flo-app/"
 alias efd="docker-compose -f dev/docker-compose.yaml up --remove-orphans"
 alias efps="cd ~/Development/exchange-flo-app/apps/ef_portal/ && mix deps.get && ./bin/start.dev.sh"

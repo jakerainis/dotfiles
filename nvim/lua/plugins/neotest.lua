@@ -90,7 +90,6 @@ return {
     -- Instead of using workspace.run (which doesn't pass env vars),
     -- we cd into the app directory and run mix test directly
     local function workspace_post_process(cmd)
-      -- Find the test path in the command (last element that contains "apps/")
       local test_path_idx = nil
       local test_path = nil
       for i, arg in ipairs(cmd) do
@@ -101,13 +100,10 @@ return {
         end
       end
 
-      -- If no apps/ path found, return original command
       if not test_path then
         return cmd
       end
 
-      -- Extract project name and relative test path
-      -- apps/ef_portal/test/ef_portal/invites_test.exs:36 -> ef_portal, test/ef_portal/invites_test.exs:36
       local project = test_path:match("^apps/([%w_]+)/")
       local relative_path = test_path:match("^apps/[%w_]+/(test/.+)$")
 
@@ -115,22 +111,16 @@ return {
         return cmd
       end
 
-      -- Build the inner command with relative path
-      -- Original: elixir -r ... -S mix test --formatter ... apps/project/test/...
-      -- Inner:    elixir -r ... -S mix test --formatter ... test/...
       local inner_parts = {}
       for i, arg in ipairs(cmd) do
         if i == test_path_idx then
           table.insert(inner_parts, relative_path)
         else
-          -- Escape single quotes in arguments
           local escaped = arg:gsub("'", "'\"'\"'")
           table.insert(inner_parts, "'" .. escaped .. "'")
         end
       end
 
-      -- Wrap in sh -c with cd to app directory
-      -- This preserves env vars (NEOTEST_OUTPUT_DIR) that neotest sets
       local inner_cmd = table.concat(inner_parts, " ")
       local shell_cmd = string.format("cd apps/%s && %s", project, inner_cmd)
 

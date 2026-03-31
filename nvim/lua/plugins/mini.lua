@@ -396,6 +396,13 @@ return {
       desc = "Load session",
     },
     {
+      "<leader>Sd",
+      function()
+        MiniSessions.select("delete")
+      end,
+      desc = "Delete session",
+    },
+    {
       "<leader>Sr",
       function()
         local name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")

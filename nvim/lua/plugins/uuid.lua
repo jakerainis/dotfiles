@@ -1,7 +1,7 @@
 return {
   "TrevorS/uuid-nvim",
   lazy = true,
-  event = "InsertEnter", -- Load the plugin when entering insert mode
+  event = "InsertEnter",
   config = function()
     local uuid = require("uuid-nvim")
     uuid.setup({

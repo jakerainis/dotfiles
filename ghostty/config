@@ -43,3 +43,4 @@ theme = evergarden-spring-skye.yml
 custom-shader = shaders/synesthaxia.glsl
 # custom-shader = shaders/cursor_warp.glsl
 custom-shader = shaders/cursor_ripple.glsl
+# custom-shader = shaders/gradient_background.glsl
