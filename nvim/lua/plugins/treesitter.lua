@@ -5,7 +5,8 @@ return {
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter").setup({})
-    require("nvim-treesitter").install({
+
+    local wanted = {
       "bash",
       "css",
       "diff",
@@ -28,7 +29,24 @@ return {
       "vim",
       "vimdoc",
       "yaml",
-    })
+    }
+
+    -- Only install parsers that aren't already installed
+    local installed = {}
+    for _, p in ipairs(require("nvim-treesitter").get_installed()) do
+      installed[p] = true
+    end
+
+    local missing = {}
+    for _, p in ipairs(wanted) do
+      if not installed[p] then
+        missing[#missing + 1] = p
+      end
+    end
+
+    if #missing > 0 then
+      require("nvim-treesitter").install(missing)
+    end
 
     -- Enable treesitter highlighting for all filetypes
     vim.api.nvim_create_autocmd("FileType", {

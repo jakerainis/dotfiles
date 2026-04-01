@@ -24,10 +24,6 @@ map("n", "N", "'nN'[v:searchforward].'zzzv'", { expr = true, desc = "Prev search
 -- WINDOWS
 --------------------------------------------------------------------------------
 
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 map("n", "<leader>wr", fn.resize_mode, { desc = "Resize mode (h/j/k/l)" })
 map("n", "<leader>w=", "<C-w>=", { desc = "Equal window sizes" })
 map("n", "<leader>w|", "<C-w>|", { desc = "Max width" })
@@ -44,6 +40,7 @@ map("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Go to lower window" })
 map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Go to upper window" })
 map("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Go to right window" })
 map({ "n", "t" }, "<C-/>", fn.toggle_terminal, { desc = "Toggle terminal" })
+map({ "n", "t" }, "<C-_>", fn.toggle_terminal, { desc = "Toggle terminal" })
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 map("t", "gf", "<C-\\><C-n>gf", { desc = "Open file under cursor" })
 

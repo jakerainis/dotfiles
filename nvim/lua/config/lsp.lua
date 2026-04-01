@@ -1,6 +1,5 @@
 -- LSP Configuration (Neovim 0.11+ native)
--- Server-specific configs live in nvim-v2/lsp/*.lua
--- Neovim has built-in configs for common servers (cssls, html, jsonls, etc.)
+-- Server-specific configs live in lsp/*.lua
 
 -- Enhance capabilities with blink.cmp if available
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -24,9 +23,6 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("tailwindcss")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("yamlls")
-
--- Override built-in gr* group with a single gr → references mapping
-vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
 
 -- Keymaps (only active when an LSP is attached to the buffer)
 vim.api.nvim_create_autocmd("LspAttach", {
