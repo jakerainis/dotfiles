@@ -1,6 +1,7 @@
 # Environment
 export EDITOR="nvim"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+export SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt"
 
 # Completions & Autosuggestions
 autoload -Uz compinit && compinit
@@ -108,8 +109,8 @@ tbc() {
   fi
 
   # Copy .env from main repo if it exists
-  if [ -f "$main_path/.env" ] && [ ! -f "$wt_path/.env" ]; then
-    cp "$main_path/.env" "$wt_path/.env"
+  if [ -f "$main_path/.env" ] && [ ! -e "$wt_path/.env" ]; then
+    ln -s "$main_path/.env" "$wt_path/.env"
   fi
 
   # Allow direnv for the worktree
