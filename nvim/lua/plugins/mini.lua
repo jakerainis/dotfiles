@@ -219,8 +219,20 @@ return {
     })
     vim.api.nvim_create_autocmd("VimLeavePre", {
       callback = function()
-        local dominated_ft = { "snacks_dashboard", "lazy", "mason", "minifiles", "" }
+        local dominated_ft = { "snacks_dashboard", "snacks_explorer", "lazy", "mason", "minifiles", "" }
         local dominated_bt = { "nofile", "help", "terminal" }
+
+        -- Close windows with non-saveable buffers before saving session
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          local ft = vim.bo[buf].filetype
+          local bt = vim.bo[buf].buftype
+          if vim.tbl_contains(dominated_ft, ft) or vim.tbl_contains(dominated_bt, bt) then
+            pcall(vim.api.nvim_win_close, win, true)
+          end
+        end
+
+        -- Save session if any real buffers remain
         for _, buf in ipairs(vim.api.nvim_list_bufs()) do
           if vim.api.nvim_buf_is_loaded(buf) then
             local ft = vim.bo[buf].filetype

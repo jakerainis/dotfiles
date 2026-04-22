@@ -35,10 +35,10 @@ map("n", "<leader>|", "<cmd>vsplit<CR>", { desc = "Vertical split" })
 -- TERMINAL
 --------------------------------------------------------------------------------
 
-map("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Go to left window" })
-map("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Go to lower window" })
-map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Go to upper window" })
-map("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Go to right window" })
+map("t", "<C-h>", "<C-\\><C-n><cmd>TmuxNavigateLeft<cr>", { desc = "Go to left pane" })
+map("t", "<C-j>", "<C-\\><C-n><cmd>TmuxNavigateDown<cr>", { desc = "Go to lower pane" })
+map("t", "<C-k>", "<C-\\><C-n><cmd>TmuxNavigateUp<cr>", { desc = "Go to upper pane" })
+map("t", "<C-l>", "<C-\\><C-n><cmd>TmuxNavigateRight<cr>", { desc = "Go to right pane" })
 map({ "n", "t" }, "<C-/>", fn.toggle_terminal, { desc = "Toggle terminal" })
 map({ "n", "t" }, "<C-_>", fn.toggle_terminal, { desc = "Toggle terminal" })
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })

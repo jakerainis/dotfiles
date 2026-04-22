@@ -24,8 +24,6 @@ window-padding-y = 10
 
 # Vim Cmd keybinds (bypass tmux which can't pass Super modifier)
 keybind = super+d=unbind
-# keybind = super+d=text:\x2e
-# keybind = super+d=text:\x1b[100;9u
 keybind = super+s=text:\x1b:w\r
 keybind = super+slash=text:gcc
 keybind = super+shift+a=text::'<,'>sort\r

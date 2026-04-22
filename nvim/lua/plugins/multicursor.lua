@@ -13,8 +13,9 @@ return {
     set({ "n", "x" }, "<leader><up>", function() mc.lineSkipCursor(-1) end)
     set({ "n", "x" }, "<leader><down>", function() mc.lineSkipCursor(1) end)
 
-    -- Match word under cursor (Cmd+D for VS Code feel)
+    -- Match word under cursor
     set({ "n", "x" }, "<D-d>", function() mc.matchAddCursor(1) end)
+    set({ "n", "x" }, "<C-n>", function() mc.matchAddCursor(1) end)
     set({ "n", "x" }, "<D-S-d>", function() mc.matchSkipCursor(1) end)
 
     -- Mouse support

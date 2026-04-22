@@ -48,6 +48,10 @@ return {
       require("nvim-treesitter").install(missing)
     end
 
+    -- Map filetypes to parser names where they differ
+    vim.treesitter.language.register("heex", "eelixir")
+    vim.treesitter.language.register("markdown", "livebook")
+
     -- Enable treesitter highlighting for all filetypes
     vim.api.nvim_create_autocmd("FileType", {
       callback = function()

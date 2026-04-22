@@ -19,7 +19,7 @@ add_newline = false
 "Music" = "󰝚 "
 "Pictures" = " "
 "dotfiles" = ""
-"exchange-flo-app" = ""
+"ef/" = "/"
 
 [hostname]
 ssh_only = false

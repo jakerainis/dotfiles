@@ -54,28 +54,38 @@ Prefix: `Ctrl+Space`
 | `Ctrl+f` | Find directories |
 | `Ctrl+d` | Kill selected session |
 
-## Shell Aliases
+## Tmux Sessions (`tm*`)
 
 ```bash
-tl                # List all sesh sessions
-tla               # Fuzzy attach to a session (fzf picker)
-tk                # Pick a session to kill (fzf picker)
-tka               # Kill all sessions (kill tmux server)
-```
-
-## Session Templates (`tc`)
-
-```bash
-tc                # Pick a template to launch (fzf picker)
-tc -n <name>      # Create an ad-hoc session in the current directory
+tml               # List sessions
+tma               # Attach to session (fzf picker)
+tmk               # Kill a session (fzf picker)
+tmka              # Kill all sessions
+tmc               # Create session from template (fzf picker)
 ```
 
 ### Available Templates
 
 | Name | Description |
 |------|-------------|
-| `dotfiles` | Dotfiles: nvim (80%) + terminal (20%) |
-| `exchangeflo` | ExchangeFlo: 4 windows (exchangeflo, wringer, nvim, system) |
+| `dev` | Generic dev: nvim (80%) + terminal (20%), uses current directory |
+| `exchangeflo` | ExchangeFlo: 2 windows (apps 4x2 grid, nvim) |
+| `monitor` | Monitor: k9s + btop (75% left), 4 terminal panes (25% right) |
+
+## Worktree Branches (`tb*`)
+
+```bash
+tbc <branch>               # Create worktree + pick template + launch session
+                           # Uses existing branch or creates new one from main
+                           # Example: tbc jr/my-feature
+
+tbc -f <base> <branch>     # Create worktree + new branch from a specific base
+                           # Example: tbc -f jr/wr-consent jr/consent-gating
+
+tbk                        # Kill worktree session + remove worktree (fzf picker)
+
+tbl                        # List all worktrees
+```
 
 ## Misc
 
