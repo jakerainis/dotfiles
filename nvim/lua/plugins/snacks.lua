@@ -87,6 +87,11 @@ return {
     -- Floating input prompts
     input = { enabled = true },
 
+    -- Lazygit integration
+    lazygit = {
+      configure = true,
+    },
+
     -- Smooth scrolling
     scroll = { enabled = true },
 

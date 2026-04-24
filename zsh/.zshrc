@@ -1,7 +1,8 @@
 # Environment
 export EDITOR="nvim"
-export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+export XDG_CONFIG_HOME="$HOME/.config" #Lazyvim config path override
 
 # Completions & Autosuggestions
 autoload -Uz compinit && compinit
