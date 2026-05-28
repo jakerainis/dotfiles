@@ -1,4 +1,3 @@
-os:
-  edit: '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-expr "execute(\"lua vim.api.nvim_win_close(0, true)\")")'
-  editAtLine: '[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-expr "execute(\"lua vim.api.nvim_win_close(0, true)\")" && nvim --server "$NVIM" --remote-send ":{{line}}<CR>")'
-  editInTerminal: false
+git:
+  autoFetch: true
+  autoForwardBranches: none

@@ -2,7 +2,7 @@
 export EDITOR="nvim"
 export SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-export XDG_CONFIG_HOME="$HOME/.config" #Lazyvim config path override
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml" # lazygit ignores XDG_CONFIG_HOME on macOS
 
 # Completions & Autosuggestions
 autoload -Uz compinit && compinit
@@ -29,24 +29,41 @@ alias docker="/Applications/Docker.app/Contents/Resources/bin/docker"
 alias df="cd ~/dotfiles"
 alias ll="eza -1 -l --color=always --icons=always"
 alias src="source ~/.zshrc"
+alias tbl="git worktree list"
+alias tml="sesh list -t"
+alias tmka="tmux kill-server"
 alias v="nvim"
 alias vim="nvim"
 alias zshconfig="nvim ~/.zshrc"
 
-# Tmux session helpers (tm*)
-alias tml="sesh list -t"
-alias tmka="tmux kill-server"
+# EF Aliases
+alias efc="cd ~/Development/ef/"
+alias efd="docker-compose -f dev/docker-compose.yaml up --remove-orphans"
+alias efps="cd ~/Development/ef/apps/ef_portal/ && mix deps.get && ./bin/start.dev.sh"
+alias efs="source ~/Development/ef/.env"
+alias devreset="direnv allow && mix ecto.reset; mix ecto.seed; mix ecto.seed.dev"
+alias start="direnv allow && mix deps.get && ./bin/start.dev.sh"
+alias testreset="direnv allow && mix deps.get && MIX_ENV=test mix ecto.reset"
 
+###################################
+# List all tmux sessions and attach one 
+###################################
 tma() {
   sesh connect "$(sesh list -t --icons | fzf-tmux -p 80%,70% --no-sort --ansi --border-label " sesh " --prompt "🪟  ")"
 }
 
+###################################
+# List all tmux sessions and kill one
+####################################
 tmk() {
   local session
   session=$(sesh list -t | fzf --border-label " kill session " --prompt "💀  ")
   [ -n "$session" ] && tmux kill-session -t "$session"
 }
 
+###################################
+# Create tmux session from template
+####################################
 tmc() {
   local scripts_dir="$HOME/.config/sesh/scripts"
   local script
@@ -58,9 +75,45 @@ tmc() {
   fi
 }
 
-# Tmux worktree/branch helpers (tb*)
-alias tbl="git worktree list"
+###################################
+# List all worktree sessions and kill one 
+###################################
+tbk() {
+  local worktrees
+  worktrees=$(git worktree list | tail -n +2)
 
+  if [ -z "$worktrees" ]; then
+    echo "No worktrees to remove"
+    return 0
+  fi
+
+  local selected
+  selected=$(echo "$worktrees" | fzf --border-label " remove worktree " --prompt "🗑️  ")
+  if [ -z "$selected" ]; then
+    return 0
+  fi
+
+  # Extract branch name from [branch] in the output
+  local branch
+  branch=$(echo "$selected" | grep -o '\[.*\]' | tr -d '[]')
+  if [ -z "$branch" ]; then
+    echo "Could not determine branch name"
+    return 1
+  fi
+
+  local repo_name=$(basename "$(git worktree list | head -1 | awk '{print $1}')")
+  local session_name="${repo_name}-$(echo "$branch" | tr '/' '-')"
+
+  # Kill tmux session if it exists
+  tmux kill-session -t "$session_name" 2>/dev/null
+
+  # Remove worktree
+  wt remove "$branch"
+}
+
+###################################
+# Create worktree, branch, session from template
+###################################
 tbc() {
   local scripts_dir="$HOME/.config/sesh/scripts"
   local from_branch=""
@@ -126,45 +179,4 @@ tbc() {
   tmux attach -t "$session_name" 2>/dev/null || tmux switch-client -t "$session_name"
 }
 
-tbk() {
-  local worktrees
-  worktrees=$(git worktree list | tail -n +2)
 
-  if [ -z "$worktrees" ]; then
-    echo "No worktrees to remove"
-    return 0
-  fi
-
-  local selected
-  selected=$(echo "$worktrees" | fzf --border-label " remove worktree " --prompt "🗑️  ")
-  if [ -z "$selected" ]; then
-    return 0
-  fi
-
-  # Extract branch name from [branch] in the output
-  local branch
-  branch=$(echo "$selected" | grep -o '\[.*\]' | tr -d '[]')
-  if [ -z "$branch" ]; then
-    echo "Could not determine branch name"
-    return 1
-  fi
-
-  local repo_name=$(basename "$(git worktree list | head -1 | awk '{print $1}')")
-  local session_name="${repo_name}-$(echo "$branch" | tr '/' '-')"
-
-  # Kill tmux session if it exists
-  tmux kill-session -t "$session_name" 2>/dev/null
-
-  # Remove worktree
-  wt remove "$branch"
-}
-
-# EF Aliases
-alias efc="cd ~/Development/ef/"
-alias efd="docker-compose -f dev/docker-compose.yaml up --remove-orphans"
-alias efps="cd ~/Development/ef/apps/ef_portal/ && mix deps.get && ./bin/start.dev.sh"
-alias efs="source ~/Development/ef/.env"
-alias devreset="direnv allow && mix ecto.reset; mix ecto.seed; mix ecto.seed.dev"
-alias start="mix deps.get && ./bin/start.dev.sh"
-alias testreset="direnv allow && MIX_ENV=test mix ecto.reset"
-alias wrps="cd ~/Development/ef/apps/wr_portal/ && mix deps.get && cd assets/ && npm i && cd ../ && ./bin/start.dev.sh"
