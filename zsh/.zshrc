@@ -3,6 +3,7 @@ export EDITOR="nvim"
 export SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml" # lazygit ignores XDG_CONFIG_HOME on macOS
+export UV_PYTHON=3.12 # pin uvx default; 3.14 has no pglast wheel, breaks postgres-mcp
 
 # Completions & Autosuggestions
 autoload -Uz compinit && compinit
@@ -41,9 +42,36 @@ alias efc="cd ~/Development/ef/"
 alias efd="docker-compose -f dev/docker-compose.yaml up --remove-orphans"
 alias efps="cd ~/Development/ef/apps/ef_portal/ && mix deps.get && ./bin/start.dev.sh"
 alias efs="source ~/Development/ef/.env"
-alias devreset="direnv allow && mix ecto.reset; mix ecto.seed; mix ecto.seed.dev"
 alias start="direnv allow && mix deps.get && ./bin/start.dev.sh"
+alias startlog="direnv allow && mix deps.get && ./bin/start.dev.sh 2>&1 | tee /tmp/wr_event_api.log"
 alias testreset="direnv allow && mix deps.get && MIX_ENV=test mix ecto.reset"
+alias tunnel="./dev/tunnel.sh --stream-host --port 4502"
+
+
+###################################
+# Reset dev DB with confirmation showing target DB context
+###################################
+devreset() {
+  local cwd=$(pwd)
+  local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "(not a git repo)")
+  local suffix="${DB_SUFFIX:-(none — using base DB names)}"
+
+  echo ""
+  echo "⚠️  About to RESET the dev database:"
+  echo "  cwd:        $cwd"
+  echo "  branch:     $branch"
+  echo "  DB_SUFFIX:  $suffix"
+  echo ""
+
+  if ! read -q "REPLY?Continue? (y/N) "; then
+    echo ""
+    echo "Aborted."
+    return 1
+  fi
+  echo ""
+
+  direnv allow && mix deps.get && mix ecto.reset; mix ecto.seed; mix ecto.seed.dev
+}
 
 ###################################
 # List all tmux sessions and attach one 
@@ -107,8 +135,8 @@ tbk() {
   # Kill tmux session if it exists
   tmux kill-session -t "$session_name" 2>/dev/null
 
-  # Remove worktree
-  wt remove "$branch"
+  # Remove worktree (--force so build artifacts/deps don't block cleanup)
+  wt remove --force "$branch"
 }
 
 ###################################
@@ -144,7 +172,10 @@ tbc() {
 
   # Create worktree
   if git show-ref --verify --quiet "refs/heads/$branch"; then
-    # Branch exists — create worktree for it
+    # Local branch exists — create worktree for it
+    wt switch "$branch" || return 1
+  elif git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+    # Remote-only branch — wt switch creates a local tracking branch
     wt switch "$branch" || return 1
   elif [ -n "$from_branch" ]; then
     # New branch from specified base
