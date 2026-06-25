@@ -193,12 +193,7 @@ tbc() {
     return 1
   fi
 
-  # Copy .env from main repo if it exists
-  if [ -f "$main_path/.env" ] && [ ! -e "$wt_path/.env" ]; then
-    ln -s "$main_path/.env" "$wt_path/.env"
-  fi
-
-  # Allow direnv for the worktree
+  # Sync direnv allow before opening panes (post-switch hook does this too, but in the background).
   direnv allow "$wt_path" 2>/dev/null
 
   # Derive session name: repo-branch (slashes become dashes)

@@ -1,2 +1,6 @@
 [default_session]
 preview_command = "eza --all --git --icons --color=always {}"
+
+[[wildcard]]
+pattern = "~/Development/ef*"
+startup_command = "~/.config/sesh/scripts/exchangeflo.sh"

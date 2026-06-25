@@ -1,0 +1,11 @@
+# worktrunk user config — applies to all repos.
+# Project-specific setup lives in each repo's .config/wt.toml.
+
+# Whitelist .envrc for the new worktree so direnv loads it without a manual
+# `direnv allow`. The ef project's pre-start hook (dev/setup-worktree.sh)
+# creates the .env symlink first, so .envrc has its .env to read by now.
+post-switch = "direnv allow {{ worktree_path }} 2>/dev/null || true"
+
+# Use `-` instead of the default `.` so tmux/sesh can use the worktree dir
+# basename as a session name verbatim (tmux reserves `.` for target specs).
+worktree-path = "{{ repo_path }}/../{{ repo }}-{{ branch | sanitize }}"

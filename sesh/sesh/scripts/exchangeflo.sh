@@ -1,21 +1,31 @@
 #!/usr/bin/env bash
-# ExchangeFlo development session
-SESSION="${1:-exchangeflo}"
-PROJECT="${2:-$HOME/Development/ef}"
-direnv allow "$PROJECT" 2>/dev/null
+# ExchangeFlo development session — one layout, two entry points:
+#   template (tbc/tmc):    exchangeflo.sh <session> [project_dir]   → creates the session
+#   sesh startup_command:  exchangeflo.sh                           → lays out the session sesh just made
 
-# Reattach if session already exists
-if tmux has-session -t "$SESSION" 2>/dev/null; then
-  tmux attach-session -t "$SESSION"
-  exit 0
+if [ -n "${1:-}" ]; then
+  # Template mode: create (or reattach) a named session.
+  SESSION="$1"
+  PROJECT="${2:-$HOME/Development/ef}"
+  direnv allow "$PROJECT" 2>/dev/null
+  if tmux has-session -t "$SESSION" 2>/dev/null; then
+    tmux attach-session -t "$SESSION" 2>/dev/null || tmux switch-client -t "$SESSION"
+    exit 0
+  fi
+  COLS=$(tput cols)
+  LINES=$(tput lines)
+  tmux new-session -d -s "$SESSION" -c "$PROJECT/apps/ef_workers" -n "apps" -x "$COLS" -y "$LINES"
+else
+  # Wildcard mode: sesh already created + attached the session; lay out this one.
+  PANE="$TMUX_PANE"
+  SESSION="$(tmux display-message -p -t "$PANE" '#S')"
+  PROJECT="$(tmux display-message -p -t "$PANE" '#{pane_current_path}')"
+  tmux rename-window -t "$PANE" "apps"
+  tmux send-keys -t "$PANE" "cd '$PROJECT/apps/ef_workers' && clear" Enter
 fi
-
-COLS=$(tput cols)
-LINES=$(tput lines)
 
 # Window 1: apps (4 columns x 2 rows)
 # Top row: ef apps
-tmux new-session -d -s "$SESSION" -c "$PROJECT/apps/ef_workers" -n "apps" -x "$COLS" -y "$LINES"
 tmux split-window -h -t "$SESSION:apps" -c "$PROJECT/apps/ef_call_api"
 tmux split-window -h -t "$SESSION:apps" -c "$PROJECT/apps/ef_publisher_api"
 tmux split-window -h -t "$SESSION:apps" -c "$PROJECT/apps/ef_portal"
