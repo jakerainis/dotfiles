@@ -73,8 +73,10 @@ devreset() {
   direnv allow && mix deps.get && mix ecto.reset; mix ecto.seed; mix ecto.seed.dev
 }
 
+# ─── tmux (fallback — kept alongside herdr; safe to remove after herdr proves itself) ───
+
 ###################################
-# List all tmux sessions and attach one 
+# List all tmux sessions and attach one
 ###################################
 tma() {
   sesh connect "$(sesh list -t --icons | fzf-tmux -p 80%,70% --no-sort --ansi --border-label " sesh " --prompt "🪟  ")"
@@ -205,4 +207,107 @@ tbc() {
   tmux attach -t "$session_name" 2>/dev/null || tmux switch-client -t "$session_name"
 }
 
+# ─── herdr (default multiplexer) ─────────────────────────────────────────────
+# `hs*` = herdr session (workspace).   `ht*` = herdr tree (worktree).
 
+# Clear any stale herdr aliases from a previous shell config revision, so
+# re-sourcing this file over an existing session doesn't collide with the
+# function definitions below.
+unalias hml hma hmk hmc hbc hbk hsl hsa hsk hsc htc htk 2>/dev/null
+
+###################################
+# List all herdr sessions (one per line; * marks the focused one)
+###################################
+function hsl {
+  herdr workspace list 2>/dev/null | jq -r '
+    .result.workspaces
+    | sort_by(.number)
+    | .[]
+    | "\(if .focused then "*" else "-" end) \(.label)\t\(.pane_count) pane\(if .pane_count == 1 then "" else "s" end)\t\(.agent_status)"
+  ' | column -t -s $'\t'
+}
+
+###################################
+# List all herdr sessions and focus one
+###################################
+function hsa {
+  local pick id
+  pick=$(herdr workspace list \
+    | jq -r '.result.workspaces[] | "\(.workspace_id)\t\(.label)"' \
+    | fzf --border-label " herdr " --prompt "🪟  " --delimiter=$'\t' --with-nth=2)
+  [ -z "$pick" ] && return
+  id="${pick%%$'\t'*}"
+  herdr workspace focus "$id" >/dev/null
+  # If we're not inside herdr, attach the current TTY so the focus takes visible effect.
+  [ -z "${HERDR_ENV:-}" ] && exec herdr
+}
+
+###################################
+# List all herdr sessions and close one
+###################################
+function hsk {
+  local pick id
+  pick=$(herdr workspace list \
+    | jq -r '.result.workspaces[] | "\(.workspace_id)\t\(.label)"' \
+    | fzf --border-label " kill session " --prompt "💀  " --delimiter=$'\t' --with-nth=2)
+  [ -z "$pick" ] && return
+  id="${pick%%$'\t'*}"
+  herdr workspace close "$id" >/dev/null
+}
+
+###################################
+# Create a herdr session from a template (no worktree)
+###################################
+function hsc {
+  local scripts_dir="$HOME/.config/herdr/scripts"
+  local template
+  template=$(find "$scripts_dir" -maxdepth 1 -name '*.sh' ! -name 'wt-new-session.sh' -exec basename {} .sh \; \
+    | fzf --border-label " session template " --prompt "📋  ")
+  [ -z "$template" ] && return
+  local name="${1:-$template}"
+  bash "$scripts_dir/$template.sh" "$name" "$(pwd)"
+  [ -z "${HERDR_ENV:-}" ] && exec herdr
+}
+
+###################################
+# Create worktree + branch + herdr session from template (mirror of tbc)
+###################################
+function htc {
+  "$HOME/.config/herdr/scripts/wt-new-session.sh" "$@"
+}
+
+###################################
+# Remove worktree + close its herdr session (mirror of tbk)
+###################################
+function htk {
+  local worktrees selected branch main_path repo_name session_name ws_id
+  worktrees=$(git worktree list | tail -n +2)
+  if [ -z "$worktrees" ]; then
+    echo "No worktrees to remove"
+    return 0
+  fi
+
+  selected=$(echo "$worktrees" | fzf --border-label " remove worktree " --prompt "🗑️  ")
+  [ -z "$selected" ] && return 0
+
+  branch=$(echo "$selected" | grep -o '\[.*\]' | tr -d '[]')
+  if [ -z "$branch" ]; then
+    echo "Could not determine branch name"
+    return 1
+  fi
+
+  main_path=$(git worktree list | head -1 | awk '{print $1}')
+  repo_name=$(basename "$main_path")
+  session_name="${repo_name}-$(echo "$branch" | tr '/' '-')"
+
+  # Close the matching herdr session (label == session_name), if any.
+  ws_id=$(herdr workspace list 2>/dev/null \
+    | jq -r --arg label "$session_name" \
+        '.result.workspaces[]? | select(.label == $label) | .workspace_id' \
+    | head -1)
+  if [ -n "$ws_id" ]; then
+    herdr workspace close "$ws_id" >/dev/null 2>&1
+  fi
+
+  wt remove --force "$branch"
+}

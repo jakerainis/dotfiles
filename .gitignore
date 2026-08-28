@@ -1,6 +1,15 @@
 # Dotfiles
 tmux/plugins
 
+# herdr runtime state (lives under ~/.config/herdr via stow symlink)
+herdr/session.json
+herdr/.plugins.lock
+herdr/herdr-server.log
+herdr/plugins/
+herdr/state/
+herdr/*.log
+herdr/release-notes.json
+
 ### OSX ###
 *.DS_Store 
 .AppleDouble 

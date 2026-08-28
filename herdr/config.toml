@@ -1,0 +1,109 @@
+onboarding = false
+
+[theme]
+# `terminal` inherits colors from the outer terminal (Ghostty), so herdr picks
+# up whatever Ghostty theme you have active — currently evergarden-spring-skye.
+name = "terminal"
+auto_switch = false
+
+# Evergarden pastel overrides for the tokens herdr exposes.
+# NOTE: panel_bg colors the top TAB STRIP (not the sidebar). The sidebar
+# active-row highlight isn't exposed as an override token in herdr 0.8.0.
+[theme.custom]
+panel_bg = "reset"          # let the ghostty background show through
+accent   = "#b3e3ca"        # evergarden cyan/mint — same as ghostty cursor
+red      = "#f57f82"
+green    = "#cbe3b3"
+yellow   = "#f5d098"
+blue     = "#b2caed"
+
+[terminal]
+new_cwd = "follow"
+
+[ui]
+prompt_new_tab_name = false
+prompt_new_workspace_name = false
+confirm_close = true
+# Prefix+B fully hides the sidebar (zero width) instead of leaving a compact rail
+# with cut-off status dots and workspace numbers.
+sidebar_collapsed_mode = "hidden"
+
+agent_panel_sort = "priority"
+[keys]
+prefix = "ctrl+space"
+
+previous_tab = "ctrl+shift+h"
+next_tab = "ctrl+shift+l"
+
+previous_workspace = "ctrl+comma"
+next_workspace = "ctrl+period"
+
+new_worktree = "prefix+shift+g"
+open_worktree = "prefix+shift+o"
+# remove_worktree — unbound on purpose. Prefix+Shift+R is herdr's default
+# for reload_config; use `hbk` (zsh) or the sidebar to remove a worktree.
+
+# Match tmux muscle memory: `|` (Prefix+Shift+Backslash) splits side-by-side,
+# alongside herdr's default Prefix+V. `-` (Prefix+Minus) is already the default
+# for a top/bottom stack.
+split_vertical = ["prefix+v", "prefix+shift+backslash"]
+
+focus_pane_left = ""
+focus_pane_down = ""
+focus_pane_up = ""
+focus_pane_right = ""
+
+navigate_pane_left = "h"
+navigate_pane_down = "j"
+navigate_pane_up = "k"
+navigate_pane_right = "l"
+
+[[keys.command]]
+key = "prefix+shift+e"
+type = "popup"
+command = "$HOME/.config/herdr/scripts/wt-new-session.sh"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+alt+g"
+type = "popup"
+command = "lazygit"
+width = "90%"
+height = "90%"
+
+[[keys.command]]
+key = "ctrl+b"
+type = "plugin_action"
+command = "agustinvalencia.herdr-jump.spaces"
+
+# Also on Prefix+Space to match the old tmux sesh-picker muscle memory.
+[[keys.command]]
+key = "prefix+space"
+type = "plugin_action"
+command = "agustinvalencia.herdr-jump.spaces"
+
+[[keys.command]]
+key = "prefix+a"
+type = "plugin_action"
+command = "agustinvalencia.herdr-jump.agents"
+
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "herdr-splits.nav-left"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "herdr-splits.nav-down"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "herdr-splits.nav-up"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "herdr-splits.nav-right"

@@ -1,0 +1,190 @@
+[
+  {
+    "plugin_id": "agustinvalencia.herdr-jump",
+    "name": "Herdr Jump",
+    "version": "0.2.0",
+    "min_herdr_version": "0.7.0",
+    "description": "Separate overlay pickers for herdr spaces and agents. Two pop-ups: one lists your spaces (workspaces), one lists your agents with live status colours — pick to jump. Unlike the combined session navigator, agents and spaces are browsed independently.",
+    "manifest_path": "/Users/jake.rainis/dotfiles/herdr/plugins/github/agustinvalencia.herdr-jump-f92d49d2b2c1/herdr-plugin.toml",
+    "plugin_root": "/Users/jake.rainis/dotfiles/herdr/plugins/github/agustinvalencia.herdr-jump-f92d49d2b2c1",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "build": [
+      {
+        "command": [
+          "sh",
+          "scripts/build.sh"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "agents",
+        "title": "Herdr Jump: Agents",
+        "command": [
+          "./bin/herdr-jump",
+          "agents"
+        ]
+      },
+      {
+        "id": "spaces",
+        "title": "Herdr Jump: Spaces",
+        "command": [
+          "./bin/herdr-jump",
+          "spaces"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "agents-picker",
+        "title": "Agents",
+        "placement": "overlay",
+        "command": [
+          "./bin/herdr-jump",
+          "agents-ui"
+        ]
+      },
+      {
+        "id": "spaces-picker",
+        "title": "Spaces",
+        "placement": "overlay",
+        "command": [
+          "./bin/herdr-jump",
+          "spaces-ui"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "agustinvalencia",
+      "repo": "herdr-jump",
+      "resolved_commit": "869a431edf56538973626f5a1ec4cc2e89e96238",
+      "managed_path": "/Users/jake.rainis/.config/herdr/plugins/github/agustinvalencia.herdr-jump-f92d49d2b2c1",
+      "installed_unix_ms": 1786464066255
+    }
+  },
+  {
+    "plugin_id": "herdr-splits",
+    "name": "Herdr Splits",
+    "version": "0.5.2",
+    "min_herdr_version": "0.7.0",
+    "description": "Seamless navigation and resizing between Herdr panes and Neovim splits",
+    "manifest_path": "/Users/jake.rainis/dotfiles/herdr/plugins/github/herdr-splits-d880c4924f2b/herdr-plugin.toml",
+    "plugin_root": "/Users/jake.rainis/dotfiles/herdr/plugins/github/herdr-splits-d880c4924f2b",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "actions": [
+      {
+        "id": "nav-down",
+        "title": "Navigate down (Neovim/Herder)",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "scripts/herdr-nav.sh",
+          "down"
+        ]
+      },
+      {
+        "id": "nav-left",
+        "title": "Navigate left (Neovim/Herder)",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "scripts/herdr-nav.sh",
+          "left"
+        ]
+      },
+      {
+        "id": "nav-right",
+        "title": "Navigate right (Neovim/Herder)",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "scripts/herdr-nav.sh",
+          "right"
+        ]
+      },
+      {
+        "id": "nav-up",
+        "title": "Navigate up (Neovim/Herder)",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "scripts/herdr-nav.sh",
+          "up"
+        ]
+      },
+      {
+        "id": "resize-down",
+        "title": "Resize down (Neovim/Herder)",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "scripts/herdr-resize.sh",
+          "down"
+        ]
+      },
+      {
+        "id": "resize-left",
+        "title": "Resize left (Neovim/Herder)",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "scripts/herdr-resize.sh",
+          "left"
+        ]
+      },
+      {
+        "id": "resize-right",
+        "title": "Resize right (Neovim/Herder)",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "scripts/herdr-resize.sh",
+          "right"
+        ]
+      },
+      {
+        "id": "resize-up",
+        "title": "Resize up (Neovim/Herder)",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "scripts/herdr-resize.sh",
+          "up"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "lmilojevicc",
+      "repo": "herdr-splits.nvim",
+      "resolved_commit": "c58bfdf01520845583e0033c11c56fc9d21a5424",
+      "managed_path": "/Users/jake.rainis/.config/herdr/plugins/github/herdr-splits-d880c4924f2b",
+      "installed_unix_ms": 1786464087699
+    }
+  }
+]
