@@ -28,7 +28,7 @@ confirm_close = true
 # with cut-off status dots and workspace numbers.
 sidebar_collapsed_mode = "hidden"
 
-agent_panel_sort = "priority"
+agent_panel_sort = "spaces"
 [keys]
 prefix = "ctrl+space"
 
